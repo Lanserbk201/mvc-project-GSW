@@ -5,7 +5,7 @@
 			<i class="far fa-times-circle show-nav-lateral"></i>
 			<img src="<?php echo SERVERURL; ?>vistas/assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
 			<figcaption class="roboto-medium text-center">
-				Carlos Alfaro <br><small class="roboto-condensed-light">Web Developer</small>
+				<?php echo $_SESSION['nombre_spm']." ".$_SESSION['apellido_spm']; ?> <br><small class="roboto-condensed-light"><?php echo $_SESSION['usuario_spm']; ?></small>
 			</figcaption>
 		</figure>
 		<div class="full-box nav-lateral-bar"></div>
@@ -66,6 +66,7 @@
 					</ul>
 				</li>
 
+				<?php if($_SESSION['privilegio_spm']==1){ ?>
 				<li>
 					<a href="#" class="nav-btn-submenu"><i class="fas  fa-user-secret fa-fw"></i> &nbsp; Usuarios <i class="fas fa-chevron-down"></i></a>
 					<ul>
@@ -80,10 +81,15 @@
 						</li>
 					</ul>
 				</li>
+				<?php 
+					}
 
+					if($_SESSION['privilegio_spm']==1 || $_SESSION['privilegio_spm']==2){ 
+				?>
 				<li>
 					<a href="<?php echo SERVERURL; ?>company/"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Empresa</a>
 				</li>
+				<?php } ?>
 			</ul>
 		</nav>
 	</div>

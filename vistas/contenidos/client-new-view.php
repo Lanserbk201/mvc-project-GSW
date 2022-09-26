@@ -3,7 +3,7 @@
 		<i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CLIENTE
 	</h3>
 	<p class="text-justify">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem odit amet asperiores quis minus, dolorem repellendus optio doloremque error a omnis soluta quae magnam dignissimos, ipsam, temporibus sequi, commodi accusantium!
+		Registro de clientes a los cuales se le hara el prestamo de mobiliario, favor de llenar el formulario con los datos requeridos.
 	</p>
 </div>
 
@@ -22,7 +22,7 @@
 </div>
 
 <div class="container-fluid">
-	<form action="" class="form-neon" autocomplete="off">
+	<form class="form-neon FormularioAjax" action="<?php echo SERVERURL; ?>ajax/clienteAjax.php" method="POST" data-form="save" autocomplete="off">
 		<fieldset>
 			<legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
 			<div class="container-fluid">

@@ -3,7 +3,7 @@
 		<i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR CLIENTE
 	</h3>
 	<p class="text-justify">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum rerum animi natus beatae ex. Culpa blanditiis tempore amet alias placeat, obcaecati quaerat ullam, sunt est, odio aut veniam ratione.
+		Busqueda de clientes registrados a los cuales se les dara un prestamo de mobiliario.
 	</p>
 </div>
 
@@ -20,15 +20,18 @@
 		</li>
 	</ul>	
 </div>
-
+<?php 
+	if(!isset($_SESSION['busqueda_cliente']) && empty($_SESSION['busqueda_cliente'])){
+?>
 <div class="container-fluid">
-	<form class="form-neon" action="">
+	<form class="form-neon FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php" method="POST" data-form="default" autocomplete="off">
+		<input type="hidden" name="modulo" value="cliente">
 		<div class="container-fluid">
 			<div class="row justify-content-md-center">
 				<div class="col-12 col-md-6">
 					<div class="form-group">
 						<label for="inputSearch" class="bmd-label-floating">¿Qué cliente estas buscando?</label>
-						<input type="text" class="form-control" name="busqueda-" id="inputSearch" maxlength="30">
+						<input type="text" class="form-control" name="busqueda_inicial" id="inputSearch" maxlength="30">
 					</div>
 				</div>
 				<div class="col-12">
@@ -40,16 +43,16 @@
 		</div>
 	</form>
 </div>
-
-
+<?php }else{ ?>
 <div class="container-fluid">
-	<form action="">
-		<input type="hidden" name="eliminar-busqueda" value="eliminar">
+	<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php" method="POST" data-form="search" autocomplete="off">
+		<input type="hidden" name="modulo" value="cliente">
+		<input type="hidden" name="eliminar_busqueda" value="eliminar">
 		<div class="container-fluid">
 			<div class="row justify-content-md-center">
 				<div class="col-12 col-md-6">
 					<p class="text-center" style="font-size: 20px;">
-						Resultados de la busqueda <strong>“Buscar”</strong>
+						Resultados de la busqueda <strong>“<?php echo $_SESSION['busqueda_cliente']; ?>”</strong>
 					</p>
 				</div>
 				<div class="col-12">
@@ -61,134 +64,12 @@
 		</div>
 	</form>
 </div>
-
-
 <div class="container-fluid">
-	<div class="table-responsive">
-		<table class="table table-dark table-sm">
-			<thead>
-				<tr class="text-center roboto-medium">
-					<th>#</th>
-					<th>DNI</th>
-					<th>NOMBRE</th>
-					<th>APELLIDO</th>
-					<th>TELEFONO</th>
-					<th>DIRECCIÓN</th>
-					<th>ACTUALIZAR</th>
-					<th>ELIMINAR</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="text-center" >
-					<td>1</td>
-					<td>012342567</td>
-					<td>NOMBRE DEL CLIENTE</td>
-					<td>APELLIDO DEL CLIENTE</td>
-					<td>72349874</td>
-					<td>
-						<button type="button" class="btn btn-info" data-toggle="popover" data-trigger="hover" title="Nombre del cliente" data-content="Direccion completa del cliente">
-							<i class="fas fa-info-circle"></i>
-						</button>
-					</td>
-					<td>
-						<a href="client-update.html" class="btn btn-success">
-								<i class="fas fa-sync-alt"></i>	
-						</a>
-					</td>
-					<td>
-						<form action="">
-							<button type="button" class="btn btn-warning">
-									<i class="far fa-trash-alt"></i>
-							</button>
-						</form>
-					</td>
-				</tr>
-				<tr class="text-center" >
-					<td>2</td>
-					<td>012342567</td>
-					<td>NOMBRE DEL CLIENTE</td>
-					<td>APELLIDO DEL CLIENTE</td>
-					<td>72349874</td>
-					<td>
-						<button type="button" class="btn btn-info" data-toggle="popover" data-trigger="hover" title="Nombre del cliente" data-content="Direccion completa del cliente">
-							<i class="fas fa-info-circle"></i>
-						</button>
-					</td>
-					<td>
-						<a href="client-update.html" class="btn btn-success">
-								<i class="fas fa-sync-alt"></i>	
-						</a>
-					</td>
-					<td>
-						<form action="">
-							<button type="button" class="btn btn-warning">
-									<i class="far fa-trash-alt"></i>
-							</button>
-						</form>
-					</td>
-				</tr>
-				<tr class="text-center" >
-					<td>3</td>
-					<td>012342567</td>
-					<td>NOMBRE DEL CLIENTE</td>
-					<td>APELLIDO DEL CLIENTE</td>
-					<td>72349874</td>
-					<td>
-						<button type="button" class="btn btn-info" data-toggle="popover" data-trigger="hover" title="Nombre del cliente" data-content="Direccion completa del cliente">
-							<i class="fas fa-info-circle"></i>
-						</button>
-					</td>
-					<td>
-						<a href="client-update.html" class="btn btn-success">
-								<i class="fas fa-sync-alt"></i>	
-						</a>
-					</td>
-					<td>
-						<form action="">
-							<button type="button" class="btn btn-warning">
-									<i class="far fa-trash-alt"></i>
-							</button>
-						</form>
-					</td>
-				</tr>
-				<tr class="text-center" >
-					<td>4</td>
-					<td>012342567</td>
-					<td>NOMBRE DEL CLIENTE</td>
-					<td>APELLIDO DEL CLIENTE</td>
-					<td>72349874</td>
-					<td>
-						<button type="button" class="btn btn-info" data-toggle="popover" data-trigger="hover" title="Nombre del cliente" data-content="Direccion completa del cliente">
-							<i class="fas fa-info-circle"></i>
-						</button>
-					</td>
-					<td>
-						<a href="client-update.html" class="btn btn-success">
-								<i class="fas fa-sync-alt"></i>	
-						</a>
-					</td>
-					<td>
-						<form action="">
-							<button type="button" class="btn btn-warning">
-									<i class="far fa-trash-alt"></i>
-							</button>
-						</form>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-			<li class="page-item disabled">
-				<a class="page-link" href="#" tabindex="-1">Previous</a>
-			</li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item">
-				<a class="page-link" href="#">Next</a>
-			</li>
-		</ul>
-	</nav>
+	<?php 
+		require_once "./controladores/clienteControlador.php";
+		$ins_cliente = new clienteControlador();
+
+		echo $ins_cliente->paginador_cliente_controlador($pagina[1],15,$_SESSION['privilegio_spm'],$pagina[0],$_SESSION['busqueda_cliente']);
+	?>	
 </div>
+<?php } ?>
